@@ -1,4 +1,3 @@
-import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -11,7 +10,6 @@ import steps.UserData;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 public class LoginUserTest {
     private UserClient userClient;
@@ -66,9 +64,4 @@ public class LoginUserTest {
                 responseLogin.then().extract().path("message"));
         assertEquals("Ошибка. неверный код ответа", SC_UNAUTHORIZED, responseLogin.statusCode());
     }
-
-
-
-
-
 }
