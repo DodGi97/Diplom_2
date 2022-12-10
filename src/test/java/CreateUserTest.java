@@ -8,6 +8,7 @@ import org.junit.Test;
 import steps.User;
 import steps.UserClient;
 
+import static org.apache.http.HttpStatus.SC_FORBIDDEN;
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.junit.Assert.assertEquals;
 
@@ -69,5 +70,9 @@ public class CreateUserTest {
 
         assertEquals("Создан курьер без почты",
                 userWithoutEmail, response.then().extract().path("message"));
+        assertEquals("", SC_FORBIDDEN, response.statusCode());
+        if (response.statusCode() == SC_OK) {
+                userClient.deleteUser(user);
+        }
     }
 }
