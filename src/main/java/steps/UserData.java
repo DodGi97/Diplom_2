@@ -1,8 +1,8 @@
 package steps;
 
 public class UserData {
-        public String email;
-        public String password;
+        private final String email;
+        private final String password;
 
         public UserData(String email, String password) {
             this.email = email;
