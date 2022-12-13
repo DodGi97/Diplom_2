@@ -67,12 +67,11 @@ public class CreateUserTest {
                 RandomStringUtils.randomAlphabetic(10));
         response = userClient.createUser(user);
         String userWithoutEmail = "Email, password and name are required fields";
-
-        assertEquals("Создан курьер без почты",
-                userWithoutEmail, response.then().extract().path("message"));
         assertEquals("", SC_FORBIDDEN, response.statusCode());
         if (response.statusCode() == SC_OK) {
-                userClient.deleteUser(user);
+            userClient.deleteUser(user);
         }
+        assertEquals("Создан курьер без почты",
+                userWithoutEmail, response.then().extract().path("message"));
     }
 }
